@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Detail Settings</sheetTitle>
+        </TCEforms>
+        <el>
+          <settings.listPid>
+            <TCEforms>
+              <label>Select List Page</label>
+              <config>
+                <type>group</type>
+                <internal_type>db</internal_type>
+                <allowed>pages</allowed>
+                <size>1</size>
+                <maxitems>1</maxitems>
+                <minitems>0</minitems>
+              </config>
+            </TCEforms>
+          </settings.listPid>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>
