@@ -20,8 +20,9 @@ return [
         'iconfile' => 'EXT:mobile_company/Resources/Public/Icons/tx_mobilecompany_domain_model_mobile.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'model_name, brand, price, release_date, specifications, companies, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'model_name, slug, brand, price, mobile_image, release_date, specifications, companies, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
     ],
+
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
@@ -105,6 +106,22 @@ return [
                 'default' => ''
             ],
         ],
+        'slug' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.slug',
+            'description' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.slug.description',
+            'config' => [
+                'type' => 'slug',
+                'generatorOptions' => [
+                    'fields' => ['model_name'],
+                    'fieldSeparator' => '-',
+                    'prefixParentPageSlug' => true,
+                ], 
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueinSite',
+                'default' => ''
+            ],
+        ],
         'brand' => [
             'exclude' => false,
             'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.brand',
@@ -124,14 +141,33 @@ return [
                 'type' => 'input',
                 'placeholder' => 'prize range 10000 - 100000',
                 'size' => 30,
-                //'min' => 10000,
-                //'max' => 100000,
                 'range' => [
                     'lower' => 10000,
                     'upper' => 100000,
                 ],
                 'eval' => 'double2,required',
             ]
+        ],
+        'mobile_image'=> [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image',
+            'description' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image.description',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'mobile_image',
+                [
+                    'appearance' => [
+                        'createNewRelationLinkTitle' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image.addImage',
+                    ],
+                    'maxitems' => 1,
+                    'minitems' => 0,
+                    'forign_mathc_field' => [
+                        'fieldname' => 'mobile_image',
+                        'tablenames' => 'tx_mobilecompany_domain_model_mobile',
+                        'table_local' => 'sys_file',
+                    ],
+                ],
+                $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+            ),
         ],
         'release_date' => [
             'exclude' => false,
@@ -140,10 +176,10 @@ return [
             'config' => [
                 'dbType' => 'date',
                 'type' => 'input',
-                'renderType' => 'inputDateTime',
+                'format' => 'date',
                 'size' => 30,
                 'eval' => 'date',
-                'default' => null,
+                'default' => '0000-00-00',
             ],
         ],
         'specifications' => [
@@ -154,9 +190,6 @@ return [
                 'type' => 'text',
                 'enableRichtext' => true,
                 'richtextConfiguration' => 'minimal',
-                //'richtextConfiguration' => 'customMinimal',
-                //'cols' => 5,
-                //'rows' => 2,
                 'eval' => 'trim',
                 'default' => ''
             ],

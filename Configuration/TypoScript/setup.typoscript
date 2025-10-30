@@ -31,7 +31,7 @@ plugin.tx_mobilecompany_mobilecompanylistplugin {
     storagePid = {$plugin.tx_mobilecompany_mobilecompanylistplugin.persistence.storagePid}
   }
   settings {
-    detailPid =
+    detailPid = 19
   }
 }
 
@@ -45,7 +45,7 @@ plugin.tx_mobilecompany_mobilecompanydetailplugin {
     storagePid = {$plugin.tx_mobilecompany_mobilecompanydetailplugin.persistence.storagePid}
   }
   settings {
-    listPid =
+    listPid = 18
   }
 }
 

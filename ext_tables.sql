@@ -1,7 +1,9 @@
 CREATE TABLE tx_mobilecompany_domain_model_mobile (
 	company int(11) unsigned DEFAULT '0' NOT NULL,
 	model_name varchar(255) NOT NULL DEFAULT '',
+	slug varchar(255) NOT NULL DEFAULT '',
 	brand varchar(255) NOT NULL DEFAULT '',
+	mobile_image int(11) DEFAULT NULL,
 	price double(11,2) NOT NULL DEFAULT '0.00',
 	release_date date DEFAULT NULL,
 	specifications varchar(255) NOT NULL DEFAULT '',

@@ -21,8 +21,14 @@ defined('TYPO3') || die();
         'MobileCompany',
         'Mobilecompanylistplugin',
         [
-            \Nitsan\MobileCompany\Controller\MobileController::class => 'list, show',
+            \Nitsan\MobileCompany\Controller\MobileController::class => 'list, show, new, create, edit, update, delete',
+            \Nitsan\MobileCompany\Controller\CompanyController::class => 'list, show, new, create, edit, update, delete'
         ],
+        // non-cacheable actions
+        [
+            \Nitsan\MobileCompany\Controller\MobileController::class => 'create, update, delete',
+            \Nitsan\MobileCompany\Controller\CompanyController::class => 'create, update, delete'
+        ]
     );
 
     //detailed plugin
@@ -30,8 +36,14 @@ defined('TYPO3') || die();
         'MobileCompany',
         'Mobilecompanydetailplugin',
         [
-            \Nitsan\MobileCompany\Controller\MobileController::class => 'list, show',
+            \Nitsan\MobileCompany\Controller\MobileController::class => 'list, show, new, create, edit, update, delete',
+            \Nitsan\MobileCompany\Controller\CompanyController::class => 'list, show, new, create, edit, update, delete'
         ],
+        // non-cacheable actions
+        [
+            \Nitsan\MobileCompany\Controller\MobileController::class => 'create, update, delete',
+            \Nitsan\MobileCompany\Controller\CompanyController::class => 'create, update, delete'
+        ]
     );
 
     // wizards

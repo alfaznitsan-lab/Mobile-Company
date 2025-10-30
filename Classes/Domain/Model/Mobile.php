@@ -51,6 +51,7 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $releaseDate = null;
 
+
     /**
      * Technical specifications
      *
@@ -84,6 +85,22 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setModelName(string $modelName)
     {
         $this->modelName = $modelName;
+    }
+        
+    /**
+    * slug
+    *
+    * @var string
+    */
+    protected $slug = '';
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }  
+
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     /**
@@ -129,31 +146,10 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the specifications
-     *
-     * @return string
-     */
-    public function getSpecifications()
-    {
-        return $this->specifications;
-    }
-
-    /**
-     * Sets the specifications
-     *
-     * @param string $specifications
-     * @return void
-     */
-    public function setSpecifications(string $specifications)
-    {
-        $this->specifications = $specifications;
-    }
-
-    /**
-     * Returns the releaseDate
-     *
-     * @return \DateTime releaseDate
-     */
+    * Returns the releaseDate
+    *
+    * @return \DateTime releaseDate
+    */
     public function getReleaseDate()
     {
         return $this->releaseDate;
@@ -168,6 +164,28 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setReleaseDate(\DateTime $releaseDate)
     {
         $this->releaseDate = $releaseDate;
+    }
+
+    /**
+     * Returns the specifications
+     *
+     * @return string
+     */
+    public function getSpecifications()
+    {
+        return $this->specifications;
+    }
+
+    
+    /**
+     * Sets the specifications
+     *
+     * @param string $specifications
+     * @return void
+     */
+    public function setSpecifications(string $specifications)
+    {
+        $this->specifications = $specifications;
     }
 
     /**
@@ -189,5 +207,34 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setCompanies(\Nitsan\MobileCompany\Domain\Model\Company $companies)
     {
         $this->companies = $companies;
+    }
+
+    /**
+     * Mobile image
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     */
+    protected $mobileImage = null;
+
+    /**
+    * Returns the image
+    *
+    * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage
+    */
+    public function getMobileImage()
+    {
+        return $this->mobileImage;
+    }
+ 
+    /**
+     * Sets the image
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage
+     * @return void
+     */
+    public function setMobileImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage)
+    {
+        $this->mobileImage = $mobileImage;
     }
 }

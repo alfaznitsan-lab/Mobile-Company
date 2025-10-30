@@ -23,6 +23,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:form action="create" name="newCompany" object="{newCompany}">
     <f:render partial="Company/FormFields" />
     <f:form.submit value="Create new" />
+    <f:link.action action="list">Back to list</f:link.action><br />
     </f:form>
 </f:section>
 </html>

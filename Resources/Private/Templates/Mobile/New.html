@@ -20,9 +20,22 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
     <f:render partial="FormErrors" />
 
-    <f:form action="create" name="newMobile" object="{newMobile}">
-    <f:render partial="Mobile/FormFields" />
-    <f:form.submit value="Create new" />
+    <f:form action="create" name="newMobile" class="form" object="{newMobile}">
+      <f:render partial="Mobile/FormFields" />
+      <label for="mobilecompany">Select Company</label><br>
+        <f:if condition="{companies}">
+          <f:then>
+            <f:for each="{companies}" as="companylist">
+              <f:form.radio id="companies" property="companies" value="{companylist.uid}" />{companylist.name}
+              <br>
+            </f:for>
+          </f:then>
+          <f:else>
+            <p class="alert alert-warning">No companies found.</p>
+          </f:else>
+        </f:if><br>
+
+      <f:form.submit value="Create" class="btn btn-outline-info"/>
     </f:form>
 </f:section>
 </html>

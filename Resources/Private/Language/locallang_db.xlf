@@ -15,6 +15,15 @@
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.model_name.description" resname="tx_mobilecompany_domain_model_mobile.model_name.description">
 				<source>Mobile Model Name</source>
 			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image" resname="tx_mobilecompany_domain_model_mobile.mobile_image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image.description" resname="tx_mobilecompany_domain_model_mobile.mobile_image.description">
+				<source>Upload an image of the mobile device</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image.addImage" resname="tx_mobilecompany_domain_model_mobile.mobile_image.addImage">
+				<source>Upload an image of the mobile device</source>
+			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.brand" resname="tx_mobilecompany_domain_model_mobile.brand">
 				<source>Brand</source>
 			</trans-unit>
@@ -25,7 +34,7 @@
 				<source>Price</source>
 			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.price.description" resname="tx_mobilecompany_domain_model_mobile.price.description">
-				<source>Price Of The Mobile</source>
+				<source>Price Description</source>
 			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.release_date" resname="tx_mobilecompany_domain_model_mobile.release_date">
 				<source>Release Date</source>
@@ -102,6 +111,13 @@
 			</trans-unit>
 			<trans-unit id="tx_mobile_company_mobilecompanydetailplugin.description">
 				<source>Displays detailed view of a selected mobile.</source>
+			</trans-unit>
+
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.slug" resname="tx_mobilecompany_domain_model_mobile.slug">
+				<source>Mobile Company Slug</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.slug.description" resname="tx_mobilecompany_domain_model_mobile.slug.description">
+				<source>URL-friendly identifier for the mobile model</source>
 			</trans-unit>
 		</body>
 	</file>
