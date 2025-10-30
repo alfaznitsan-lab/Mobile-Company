@@ -17,6 +17,6 @@ namespace Nitsan\MobileCompany\Domain\Repository;
 /**
  * The repository for Mobiles
  */
-class CompanyRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class CompanyRepository extends \TYPO3\CMS\Extbase\Persistence\repository
 {
 }
