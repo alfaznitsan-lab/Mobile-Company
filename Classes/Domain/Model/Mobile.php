@@ -63,9 +63,16 @@ class Mobile extends AbstractEntity
     protected $specifications = null;
 
     /**
+     * @var ObjectStorage<FileReference>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $image = null;
+
+    /**
      * companies
      *
-     * @var \Nitsan\MobileCompany\Domain\Model\Company
+     * @TYPO3\CMS\Extbase\Annotation\Validate("NotEmpty")
+     * 
      */
     protected $companies = null;
 
@@ -78,13 +85,6 @@ class Mobile extends AbstractEntity
     {
         return $this->modelName;
     }
-
-    /**
-     * Image (single reference)
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     */
-    protected $image = null;
 
     /**
      * Sets the modelName
@@ -229,17 +229,14 @@ class Mobile extends AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     * @psalm-return ObjectStorage<FileReference>
      */
-    public function getImage(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
+    public function getImage(): ObjectStorage
     {
         return $this->image;
     }
 
-    /**
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-     */
-    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image): void
+    public function setImage(ObjectStorage $image): void
     {
         $this->image = $image;
     }

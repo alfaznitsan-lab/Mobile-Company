@@ -31,7 +31,7 @@
 	</label><br />
 		<f:form.textfield property="specifications" id="specifications"  class="form-control" /><br />
 
-	<label for="mobilecompany">Selected Company</label><br>
+	<label for="mobilecompany">Selected Company</label><span class="required">(required)</span><br>
         <f:if condition="{companies}">
           <f:then>
             <f:for each="{companies}" as="companylist">

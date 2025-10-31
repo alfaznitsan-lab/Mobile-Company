@@ -160,7 +160,7 @@ return [
                     ],
                     'foreign_match_fields' => [
                         'fieldname' => 'image',
-                        'tablenames' => 'tx_nst3dev_domain_model_productarea',
+                        'tablenames' => 'tx_mobilecompany_domain_model_mobile',
                         'table_local' => 'sys_file',
                     ],
                     'maxitems' => 1
@@ -194,7 +194,7 @@ return [
             ],
         ],
         'companies' => [
-            'exclude' => true,
+            'exclude' => false,
             'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.companies',
             'description' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.companies.description',
             'config' => [

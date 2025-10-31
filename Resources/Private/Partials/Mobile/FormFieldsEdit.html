@@ -21,13 +21,8 @@
 	</label><br />
 		<f:form.textfield property="releaseDate" class="form-control" id="releaseDate" type="date" value="{f:format.date(date: mobile.releaseDate, format: 'Y-m-d')}" /><br />
 
-	<label for="Mobile Image">
-		<f:translate key="tx_mobilecompany_domain_model_mobile.image" />
-	</label><br />
-		<f:form.upload id="image_field" name="image" class="form-control" /><br />
-
 	<label for="specifications">
-		<f:translate key="tx_mobilecompany_domain_model_mobile.specifications" />
+		<f:translate key="tx_mobilecompany_domain_model_mobile.specifications" /><span class="required">(required)</span>
 	</label><br />
 		<f:form.textfield property="specifications" id="specifications"  class="form-control" /><br />
 

@@ -7,7 +7,7 @@ CREATE TABLE tx_mobilecompany_domain_model_mobile (
 	price          double(11,2) NOT NULL DEFAULT '0.00',
 	release_date   date DEFAULT NULL,
 	specifications varchar(255) NOT NULL DEFAULT '',
-	companies      int(11) unsigned DEFAULT '0'
+	companies      int(11) NOT NULL DEFAULT '0'
 );
 
 CREATE TABLE tx_mobilecompany_domain_model_company (
