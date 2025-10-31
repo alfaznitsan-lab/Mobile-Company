@@ -131,7 +131,9 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         $storage = $resourceFactory->getDefaultStorage();
-        $folderPath = $storage->getRootLevelFolder();
+        $targetFolderPath = 'user_upload/';
+        $folderPath = $storage->getFolder($targetFolderPath);
+        //$folderPath = $storage->getRootLevelFolder();
         $newFile = $storage->addFile($tmpName, $folderPath,$fileName);
         return $newFile;
     }
