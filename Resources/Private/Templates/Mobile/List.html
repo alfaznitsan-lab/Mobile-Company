@@ -29,8 +29,8 @@ Otherwise your changes will be overwritten the next time you save the extension 
           <th>Edit</th>
           <th>Delete</th>
         </tr>
+        <f:debug>{mobiles.image}</f:debug>
         <f:for each="{mobiles}" as="mobile" iteration="iM">
-          <f:debug>{mobile}</f:debug>
           <tr>
             <td>
               <f:if condition="{detailPid} == null">
@@ -49,7 +49,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
             <td>
               <f:if condition="{mobile.image}">
                 <f:then>
-                  <f:image image="{mobile.image}" class="img-fluid rounded-start m-1" alt="Mobile Image" width="200px" height="200px" />
+                  <f:image image="{mobile.image.0}" class="img-fluid rounded-start m-1" alt="Mobile Image" width="200px" height="200px"/>
                 </f:then>
                 <f:else>
                   No Image

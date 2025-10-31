@@ -17,6 +17,16 @@
 		<td><f:format.date format="Y-m-d">{mobile.releaseDate}</f:format.date></td>
 	</tr>
 	<tr>
+		<td><f:translate key="tx_mobilecompany_domain_model_mobile.image" /></td>
+		<td>
+			<f:if condition="{mobile.image}">
+                <f:for each="{mobile.image}" as="image">
+                    <f:image image="{image}" width="200"/>
+                </f:for>
+			</f:if>
+        </td>
+	</tr>
+	<tr>
 		<td><f:translate key="tx_mobilecompany_domain_model_mobile.specifications" /></td>
 		<td>{mobile.specifications}</td>
 	</tr>

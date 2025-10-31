@@ -7,38 +7,10 @@ namespace Nitsan\MobileCompany\Controller;
 use Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter;
-use TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationInterface;
-use \TYPO3\CMS\Core\Utility\DebuggerUtility;
-use TYPO3\CMS\Slug\SlugHelper;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
-use TYPO3\CMS\Core\Resource\StorageRepository;
-use TYPO3\CMS\Extbase\Domain\Model\FileReference; 
-use TYPO3\CMS\Extbase\Property\TypeConverter\FileReferenceConverter;
-use NITSAN\NsT3dev\Domain\Repository\LogRepository;
-use TYPO3\CMS\Core\Pagination\ArrayPaginator;
-use TYPO3\CMS\Core\Pagination\SimplePagination;
-use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
-use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
-use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
-use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
-use NITSAN\NsT3dev\Event\FrontendRendringEvent;
-use Psr\Http\Message\ResponseInterface;
-use NITSAN\NsT3dev\Domain\Repository\ProductAreaRepository;
-use NITSAN\NsT3dev\Domain\Model\ProductArea;
-use NITSAN\NsT3dev\Domain\Model\Log;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Log\LogManager;
-use TYPO3\CMS\Core\SysLog\Action as SystemLogGenericAction;
-use TYPO3\CMS\Core\SysLog\Error as SystemLogErrorClassification;
-use TYPO3\CMS\Core\SysLog\Type as SystemLogType;
 
 /**
  * This file is part of the "Mobile Company" Extension for TYPO3 CMS.
@@ -217,7 +189,7 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         }
         
-        //$this->mobileRepository->add($newMobile);
+        $this->mobileRepository->add($newMobile);
 
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
 
@@ -259,7 +231,7 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      *
      * @param \Nitsan\MobileCompany\Domain\Model\Mobile $mobile
      */
-    public function updateAction(\Nitsan\MobileCompany\Domain\Model\Mobile $mobile)
+    public function updateAction(\Nitsan\MobileCompany\Domain\Model\Mobile $mobile): void
     {
         $this->mobileRepository->update($mobile);
 
@@ -279,6 +251,28 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $mobile->setSlug($slug);
             $this->mobileRepository->update($mobile);
         }
+
+        if($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image']){
+            $newFile = $this->getUploadedFileData($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image'], $_FILES['tx_mobilecompany_mobilecompanylistplugin']['name']['image']);
+            
+            $fileData = $newFile->getProperties();
+            if ($fileData) {
+                $this->mobileRepository->updateSysFileReferenceRecord(
+                    (int)$fileData['uid'],
+                    (int)$mobile->getUid(),
+                    (int)$mobile->getPid(),
+                    'tx_mobilecompany_domain_model_mobile',
+                    'image'
+                );
+                $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
+                $fileObjects = $fileRepository->findByRelation(
+                    'tx_mobilecompany_domain_model_mobile',
+                    'image',
+                    $mobile->getUid()
+                );
+            }
+        }
+        $this->mobileRepository->update($mobile);
 
         $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $this->redirect('list');
