@@ -15,15 +15,6 @@
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.model_name.description" resname="tx_mobilecompany_domain_model_mobile.model_name.description">
 				<source>Mobile Model Name</source>
 			</trans-unit>
-			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image" resname="tx_mobilecompany_domain_model_mobile.mobile_image">
-				<source>Image</source>
-			</trans-unit>
-			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image.description" resname="tx_mobilecompany_domain_model_mobile.mobile_image.description">
-				<source>Upload an image of the mobile device</source>
-			</trans-unit>
-			<trans-unit id="tx_mobilecompany_domain_model_mobile.mobile_image.addImage" resname="tx_mobilecompany_domain_model_mobile.mobile_image.addImage">
-				<source>Upload an image of the mobile device</source>
-			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.brand" resname="tx_mobilecompany_domain_model_mobile.brand">
 				<source>Brand</source>
 			</trans-unit>
@@ -118,6 +109,16 @@
 			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.slug.description" resname="tx_mobilecompany_domain_model_mobile.slug.description">
 				<source>URL-friendly identifier for the mobile model</source>
+			</trans-unit>
+
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image" resname="tx_mobilecompany_domain_model_mobile.image">
+				<source>Mobile Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image.description" resname="tx_mobilecompany_domain_model_mobile.image.description">
+				<source>Upload an image for mobile</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image.addImage" resname="tx_mobilecompany_domain_model_mobile.image.addImage">
+				<source>Add Mobile Image</source>
 			</trans-unit>
 		</body>
 	</file>

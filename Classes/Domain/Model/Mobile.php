@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Nitsan\MobileCompany\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 /**
  * This file is part of the "Mobile Company" Extension for TYPO3 CMS.
@@ -17,7 +20,7 @@ namespace Nitsan\MobileCompany\Domain\Model;
 /**
  * Mobile device informatio
  */
-class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Mobile extends AbstractEntity
 {
 
     /**
@@ -75,6 +78,13 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->modelName;
     }
+
+    /**
+     * Image (single reference)
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     */
+    protected $image = null;
 
     /**
      * Sets the modelName
@@ -210,31 +220,28 @@ class Mobile extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Mobile image
-     *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * __construct
      */
-    protected $mobileImage = null;
+    public function __construct()
+    {
+        // Do not remove the next line: It would break the functionality
+        $this->image = new ObjectStorage();
+    }
 
     /**
-    * Returns the image
-    *
-    * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage
-    */
-    public function getMobileImage()
-    {
-        return $this->mobileImage;
-    }
- 
-    /**
-     * Sets the image
-     *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage
-     * @return void
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
      */
-    public function setMobileImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $mobileImage)
+    public function getImage(): ?\TYPO3\CMS\Extbase\Domain\Model\FileReference
     {
-        $this->mobileImage = $mobileImage;
+        return $this->image;
     }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     */
+    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image): void
+    {
+        $this->image = $image;
+    }
+
 }

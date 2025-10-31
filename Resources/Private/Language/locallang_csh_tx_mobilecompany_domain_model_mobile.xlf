@@ -15,6 +15,9 @@
 			<trans-unit id="release_date.description" resname="release_date.description">
 				<source>Release date</source>
 			</trans-unit>
+			<trans-unit id="image.description" resname="image.description">
+				<source>image for mobile</source>
+			</trans-unit>
 			<trans-unit id="specifications.description" resname="specifications.description">
 				<source>Technical specifications</source>
 			</trans-unit>

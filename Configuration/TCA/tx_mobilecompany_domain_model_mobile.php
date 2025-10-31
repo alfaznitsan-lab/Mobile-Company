@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:mobile_company/Resources/Public/Icons/tx_mobilecompany_domain_model_mobile.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'model_name, slug, brand, price, mobile_image, release_date, specifications, companies, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'model_name, slug, brand, price, image, release_date, specifications, companies, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
     ],
 
     'columns' => [
@@ -148,23 +148,22 @@ return [
                 'eval' => 'double2,required',
             ]
         ],
-        'mobile_image'=> [
-            'exclude' => 0,
-            'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image',
-            'description' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image.description',
+        'image'=> [
+            'exclude' => true,
+            'label' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.image',
+            'description' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.image.description',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'mobile_image',
+                'image',
                 [
                     'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.mobile_image.addImage',
+                        'createNewRelationLinkTitle' => 'LLL:EXT:mobile_company/Resources/Private/Language/locallang_db.xlf:tx_mobilecompany_domain_model_mobile.image.addImage',
                     ],
-                    'maxitems' => 1,
-                    'minitems' => 0,
-                    'forign_mathc_field' => [
-                        'fieldname' => 'mobile_image',
-                        'tablenames' => 'tx_mobilecompany_domain_model_mobile',
+                    'foreign_match_fields' => [
+                        'fieldname' => 'image',
+                        'tablenames' => 'tx_nst3dev_domain_model_productarea',
                         'table_local' => 'sys_file',
                     ],
+                    'maxitems' => 1
                 ],
                 $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),

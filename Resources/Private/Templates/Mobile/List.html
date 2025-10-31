@@ -21,7 +21,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <table class="tx_mobilecompany table table-bordered table-hover">
         <tr class="table-dark">
           <th>id</th>
-          <th>Image</th>
+          <th><f:translate key="tx_mobilecompany_domain_model_mobile.image" /></th>
           <th><f:translate key="tx_mobilecompany_domain_model_mobile.model_name" /></th>
           <th><f:translate key="tx_mobilecompany_domain_model_mobile.brand" /></th>
           <th><f:translate key="tx_mobilecompany_domain_model_mobile.price" /></th>
@@ -30,6 +30,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
           <th>Delete</th>
         </tr>
         <f:for each="{mobiles}" as="mobile" iteration="iM">
+          <f:debug>{mobile}</f:debug>
           <tr>
             <td>
               <f:if condition="{detailPid} == null">
@@ -46,9 +47,9 @@ Otherwise your changes will be overwritten the next time you save the extension 
               </f:if>
             </td>
             <td>
-              <f:if condition="{mobile.mobileImage}">
+              <f:if condition="{mobile.image}">
                 <f:then>
-                  <f:image src="{mobile.mobileImage}" alt="{mobile.modelName}" width="100" />
+                  <f:image image="{mobile.image}" class="img-fluid rounded-start m-1" alt="Mobile Image" width="200px" height="200px" />
                 </f:then>
                 <f:else>
                   No Image

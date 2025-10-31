@@ -15,6 +15,12 @@
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.model_name.description" resname="tx_mobilecompany_domain_model_mobile.model_name.description">
 				<source>Mobile Model Name</source>
 			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image" resname="tx_mobilecompany_domain_model_mobile.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image.description" resname="tx_mobilecompany_domain_model_mobile.image.description">
+				<source>Mobile Image</source>
+			</trans-unit>
 			<trans-unit id="tx_mobilecompany_domain_model_mobile.brand" resname="tx_mobilecompany_domain_model_mobile.brand">
 				<source>Brand</source>
 			</trans-unit>

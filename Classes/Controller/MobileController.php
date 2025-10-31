@@ -4,16 +4,42 @@ declare(strict_types=1);
 
 namespace Nitsan\MobileCompany\Controller;
 
+use Error;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter;
-use \TYPO3\CMS\Core\Utility\DebugUtility;
+use TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationInterface;
+use \TYPO3\CMS\Core\Utility\DebuggerUtility;
 use TYPO3\CMS\Slug\SlugHelper;
 use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
+use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference; 
-use TYPO3\CMS\Core\Resource\DuplicationBehavior; // Add this line
 use TYPO3\CMS\Extbase\Property\TypeConverter\FileReferenceConverter;
+use NITSAN\NsT3dev\Domain\Repository\LogRepository;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
+use TYPO3\CMS\Extbase\Pagination\QueryResultPaginator;
+use TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException;
+use TYPO3\CMS\Extbase\Persistence\Exception\UnknownObjectException;
+use TYPO3\CMS\Extbase\Persistence\Generic\Exception\UnsupportedMethodException;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use NITSAN\NsT3dev\Event\FrontendRendringEvent;
+use Psr\Http\Message\ResponseInterface;
+use NITSAN\NsT3dev\Domain\Repository\ProductAreaRepository;
+use NITSAN\NsT3dev\Domain\Model\ProductArea;
+use NITSAN\NsT3dev\Domain\Model\Log;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\SysLog\Action as SystemLogGenericAction;
+use TYPO3\CMS\Core\SysLog\Error as SystemLogErrorClassification;
+use TYPO3\CMS\Core\SysLog\Type as SystemLogType;
+
 /**
  * This file is part of the "Mobile Company" Extension for TYPO3 CMS.
  *
@@ -129,6 +155,15 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         return $this->htmlResponse();
     }
     
+    private function getUploadedFileData(string $tmpName, string $fileName): File
+    {
+        $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
+        $storage = $resourceFactory->getDefaultStorage();
+        $folderPath = $storage->getRootLevelFolder();
+        $newFile = $storage->addFile($tmpName, $folderPath,$fileName);
+        return $newFile;
+    }
+
     /**
      * action create
      *
@@ -138,7 +173,6 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
         $this->mobileRepository->add($newMobile);
 
-        // Generate slug after the record has been persisted and has a UID
         $record = null;
         $this->persistenceManager->persistAll();
 
@@ -146,81 +180,58 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $tableName = 'tx_mobilecompany_domain_model_mobile';
             $slugFieldName = 'slug';
 
-            // Initialize SlugHelper with the correct TCA config
             $fieldConfig = $GLOBALS['TCA'][$tableName]['columns'][$slugFieldName]['config'];
             $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, $tableName, $slugFieldName, $fieldConfig);
 
-            // Generate the slug using the record data and its pid
             $slug = $slugHelper->generate($record, $record['pid']);
 
-            // Handle slug uniqueness based on TCA 'eval' settings
             $evalInfo = GeneralUtility::trimExplode(',', $fieldConfig['eval'], true);
             if (in_array('uniqueInPid', $evalInfo, true)) {
                 $recordState = RecordStateFactory::forName($tableName)->fromArray($record, $record['pid'], $record['uid']);
                 $slug = $slugHelper->buildSlugForUniqueInPid($slug, $recordState);
             }
 
-            // Update the object with the new slug and persist again.
             $newMobile->setSlug($slug);
             $this->mobileRepository->update($newMobile);
         }
         
         // Handle uploaded image
-       /*$newImage = $_FILES['tx_mobilecompany_mobile']['tmp_name']['mobileImage'];
-        DebugUtility::debug($newImage);
-
-        if (!empty($newImage)) {
-            $this->resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
-            $storage = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\StorageRepository::class)->getDefaultStorage();
+        if($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image']){
+            $newFile = $this->getUploadedFileData($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image'], $_FILES['tx_mobilecompany_mobilecompanylistplugin']['name']['image']);
             
-            $imageFile = $_FILES['tx_mobilecompany_mobile']['tmp_name']['mobileImage'];
-            $imageName = $_FILES['tx_mobilecompany_mobile']['name']['mobileImage'];
-
-            $targetFolder = $storage->getFolder('fileadmin/user_upload');
-
-            if (!$storage->hasFolder('fileadmin/user_upload')) {
-                $targetFolder = $storage->createFolder('fileadmin/user_upload');
+            $fileData = $newFile->getProperties();
+            if ($fileData) {
+                $this->mobileRepository->updateSysFileReferenceRecord(
+                    (int)$fileData['uid'],
+                    (int)$newMobile->getUid(),
+                    (int)$newMobile->getPid(),
+                    'tx_mobilecompany_domain_model_mobile',
+                    'image'
+                );
+                $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
+                $fileObjects = $fileRepository->findByRelation(
+                    'tx_mobilecompany_domain_model_mobile',
+                    'image',
+                    $newMobile->getUid()
+                );
             }
-
-            $newFile = $storage->addFile(
-                $imageFile,
-                $targetFolder,
-                $imageName,
-                DuplicationBehavior::RENAME
-            );
-
-            // Use the Extbase ObjectManager to create an instance of the Extbase FileReference
-            if ($this->objectManager === null) {
-                $this->objectManager = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Object\ObjectManager::class);
-            }
-            $fileReference = $this->objectManager->get(FileReference::class);
-            $fileReference->setOriginalResource($newFile);
-            $newMobile->setMobileImage($fileReference);
-        }*/
-
-        $this->mobileRepository->add($newMobile);
+        }
+        
+        //$this->mobileRepository->add($newMobile);
 
         $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/p/friendsoftypo3/extension-builder/master/en-us/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
 
         $this->redirect('list');
     }
-    
+
     /**
      * Initialize property mapping for create action
      */
 
     protected function initializeCreateAction(): void
     {
-        $uploadFolder = '1:/user_upload/'; // Storage with UID 1, folder 'user_upload'
+        $propertyMappingConfiguration = $this->arguments['newMobile']->getPropertyMappingConfiguration();
 
-        // Set the configuration for the property mapper to handle the file upload.
-        $this->arguments['newMobile']->getPropertyMappingConfiguration()
-            ->forProperty('mobileImage')
-            ->setTypeConverterOption(
-                UploadedFileReferenceConverter::class,
-                UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_FOLDER,
-                $uploadFolder
-            );
         $propertyMappingConfiguration->forProperty('releaseDate')->setTypeConverterOption(
             DateTimeConverter::class,
             DateTimeConverter::CONFIGURATION_DATE_FORMAT,

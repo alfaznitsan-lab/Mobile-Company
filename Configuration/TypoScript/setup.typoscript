@@ -24,8 +24,11 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
 plugin.tx_mobilecompany_mobilecompanylistplugin {
   view {
     templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
     partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
     layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
   }
   persistence {
     storagePid = {$plugin.tx_mobilecompany_mobilecompanylistplugin.persistence.storagePid}
@@ -38,8 +41,11 @@ plugin.tx_mobilecompany_mobilecompanylistplugin {
 plugin.tx_mobilecompany_mobilecompanydetailplugin {
   view {
     templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
     partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
     layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
   }
   persistence {
     storagePid = {$plugin.tx_mobilecompany_mobilecompanydetailplugin.persistence.storagePid}

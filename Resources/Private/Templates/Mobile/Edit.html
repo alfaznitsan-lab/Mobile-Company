@@ -21,7 +21,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
     <f:render partial="FormErrors" />
 
     <f:form action="update" name="mobile" object="{mobile}" >
-    <f:render partial="Mobile/FormFields" arguments="{mobile:mobile}" /><br>
+    <f:render partial="Mobile/FormFieldsEdit" arguments="{mobile:mobile}" /><br>
 
     <label for="mobilecompany">Select Company</label><br>
       <f:if condition="{companies}">
