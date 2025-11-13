@@ -72,35 +72,3 @@ final class MyEventListener
         return null;
     }
 }
-
-/*
-
-use TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent;
-use Psr\EventDispatcher\EventSubscriberInterface;
-use TYPO3\CMS\Core\Log\LogManager;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Psr\Log\LoggerInterface;
-
-final class MyEventListener
-{
-    protected $logger;
-
-    public function __construct()
-    {
-        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
-    }
-
-    public function __invoke(AfterPackageActivationEvent $event)
-    {
-        $this->logger->info($message, ['extension' => $event->getPackageKey()]);
-        if ($event->getPackageKey() === 'mobile_company') {
-            $logMessage = 'My extension(mobile_company) was successfully activated.';
-            $extKey = 'mobile_company';
-            $errorLevel = '0';
-
-            if (isset($GLOBALS['BE_USER']) && $GLOBALS['BE_USER'] instanceof \TYPO3\CMS\Core\Authentication\BackendUserAuthentication) {
-                $GLOBALS['BE_USER']->simplelog($logMessage, $extKey, $errorLevel);
-            }
-        }
-    }
-}
