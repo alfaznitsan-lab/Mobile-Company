@@ -1,7 +1,18 @@
 services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
   Nitsan\MobileCompany\Command\DeleteOldRecordsCommand:
     tags:
       - name: console.command
         command: 'mobilecompany:deleteoldrecords'
         description: 'Deletes old mobilecompany records.'
         schedulable: true
+
+  Nitsan\MobileCompany\Package\EventListener\MyEventListener:
+    tags:
+      - name: event.listener
+        identifier: 'MobileCompany/extension-activated'
+        event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
