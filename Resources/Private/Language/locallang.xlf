@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:mobile_company/Resources/Private/Language/locallang.xlf" date="2025-10-13T13:26:03Z" product-name="mobile_company">
+		<header/>
+		<body>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile" resname="tx_mobilecompany_domain_model_mobile">
+				<source>Mobile</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.description" resname="tx_mobilecompany_domain_model_mobile.description">
+				<source>Mobile Device Informatio</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.model_name" resname="tx_mobilecompany_domain_model_mobile.model_name">
+				<source>Model Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.model_name.description" resname="tx_mobilecompany_domain_model_mobile.model_name.description">
+				<source>Mobile Model Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image" resname="tx_mobilecompany_domain_model_mobile.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.image.description" resname="tx_mobilecompany_domain_model_mobile.image.description">
+				<source>Mobile Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.brand" resname="tx_mobilecompany_domain_model_mobile.brand">
+				<source>Brand</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.brand.description" resname="tx_mobilecompany_domain_model_mobile.brand.description">
+				<source>Mobile Brand</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.price" resname="tx_mobilecompany_domain_model_mobile.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.price.description" resname="tx_mobilecompany_domain_model_mobile.price.description">
+				<source>Price Of The Mobile</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.release_date" resname="tx_mobilecompany_domain_model_mobile.release_date">
+				<source>Release Date</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.release_date.description" resname="tx_mobilecompany_domain_model_mobile.release_date.description">
+				<source>Release Date</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.specifications" resname="tx_mobilecompany_domain_model_mobile.specifications">
+				<source>Specifications</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.specifications.description" resname="tx_mobilecompany_domain_model_mobile.specifications.description">
+				<source>Technical Specifications</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.companies" resname="tx_mobilecompany_domain_model_mobile.companies">
+				<source>Companies</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.companies.description" resname="tx_mobilecompany_domain_model_mobile.companies.description">
+				<source>Companies</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_mobile.task" resname="tx_mobilecompany_domain_model_mobile.task">
+				<source>This is demo task</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company" resname="tx_mobilecompany_domain_model_company">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.description" resname="tx_mobilecompany_domain_model_company.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.name" resname="tx_mobilecompany_domain_model_company.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.name.description" resname="tx_mobilecompany_domain_model_company.name.description">
+				<source>Company Name </source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.country" resname="tx_mobilecompany_domain_model_company.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.country.description" resname="tx_mobilecompany_domain_model_company.country.description">
+				<source>Country Of Origin</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.founded_year" resname="tx_mobilecompany_domain_model_company.founded_year">
+				<source>Founded Year</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.founded_year.description" resname="tx_mobilecompany_domain_model_company.founded_year.description">
+				<source>Year Established</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.website" resname="tx_mobilecompany_domain_model_company.website">
+				<source>Website</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.website.description" resname="tx_mobilecompany_domain_model_company.website.description">
+				<source>Company Website U R L</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.description.description" resname="tx_mobilecompany_domain_model_company.description.description">
+				<source>Company Description</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.mobiles" resname="tx_mobilecompany_domain_model_company.mobiles">
+				<source>Mobiles</source>
+			</trans-unit>
+			<trans-unit id="tx_mobilecompany_domain_model_company.mobiles.description" resname="tx_mobilecompany_domain_model_company.mobiles.description">
+				<source>Mobiles</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

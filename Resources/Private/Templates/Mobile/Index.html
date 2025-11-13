@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Mobile:
+          Index.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+    <h1>Listing for Mobile</h1>
+
+    <f:flashMessages />
+
+    <table class="tx_mobilecompany">
+        <tr>
+            <th><f:translate key="tx_mobilecompany_domain_model_mobile.model_name" /></th>
+            <th><f:translate key="tx_mobilecompany_domain_model_mobile.brand" /></th>
+            <th><f:translate key="tx_mobilecompany_domain_model_mobile.price" /></th>
+            <th><f:translate key="tx_mobilecompany_domain_model_mobile.release_date" /></th>
+            <th><f:translate key="tx_mobilecompany_domain_model_mobile.specifications" /></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <f:for each="{mobiles}" as="mobile">
+            <tr>
+                <td><f:link.action action="show" arguments="{mobile : mobile}">{mobile.modelName}</f:link.action></td>
+                <td><f:link.action action="show" arguments="{mobile : mobile}">{mobile.brand}</f:link.action></td>
+                <td><f:link.action action="show" arguments="{mobile : mobile}">{mobile.price}</f:link.action></td>
+                <td><f:link.action action="show" arguments="{mobile : mobile}">{mobile.releaseDate -> f:format.date()}</f:link.action></td>
+                <td><f:link.action action="show" arguments="{mobile : mobile}">{mobile.specifications}</f:link.action></td>
+                <td><f:link.action action="edit" arguments="{mobile : mobile}">Edit</f:link.action></td>
+                <td><f:link.action action="delete" arguments="{mobile : mobile}">Delete</f:link.action></td>
+            </tr>
+        </f:for>
+    </table>
+
+    <f:link.action action="new">New Mobile</f:link.action>
+</f:section>
+</html>

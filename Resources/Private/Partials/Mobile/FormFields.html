@@ -1,0 +1,63 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:layout name="Default" />
+	
+	<label for="modelName">
+		<f:translate key="tx_mobilecompany_domain_model_mobile.model_name" /> <span class="required">(required)</span>
+	</label><br />
+		<f:form.textfield property="modelName" id="modelName"  class="form-control" /><br />
+
+	<label for="brand">
+		<f:translate key="tx_mobilecompany_domain_model_mobile.brand" /> <span class="required">(required)</span>
+	</label><br />
+		<f:form.textfield property="brand" id="brand"  class="form-control" /><br />
+
+	<label for="price">
+		<f:translate key="tx_mobilecompany_domain_model_mobile.price" /> <span class="required">(required)</span>
+	</label><br />
+		<f:form.textfield property="price" id="price"  class="form-control" /><br />
+
+	<label for="releaseDate">
+		<f:translate key="tx_mobilecompany_domain_model_mobile.release_date" />
+	</label><br />
+		<f:form.textfield property="releaseDate" class="form-control" id="releaseDate" type="date" value="{f:format.date(date: mobile.releaseDate, format: 'Y-m-d')}" /><br />
+
+	<f:if condition="{mobile}">
+		<f:then>
+			<label for="Mobile Image">change Image</label><br />
+			<f:if condition="{mobile.image}">
+				<f:then>
+					<f:image image="{mobile.image.0}" class="img-fluid rounded-start m-1" alt="Mobile Image" width="100px" height="100px"/>
+					<f:form.upload id="image_field" name="image" class="form-control" /><br />
+				</f:then>
+				<f:else>
+					<f:form.upload id="image_field" name="image" class="form-control" /><br />
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<label for="Mobile Image">
+				<f:translate key="tx_mobilecompany_domain_model_mobile.image" />
+			</label><br />
+				<f:form.upload id="image_field" name="image" class="form-control" /><br />
+		</f:else>
+	</f:if>
+
+	<label for="specifications">
+		<f:translate key="tx_mobilecompany_domain_model_mobile.specifications" />
+	</label><br />
+		<f:form.textfield property="specifications" id="specifications"  class="form-control" /><br />
+
+	<label for="mobilecompany">Selected Company</label><span class="required">(required)</span><br>
+        <f:if condition="{companies}">
+          <f:then>
+            <f:for each="{companies}" as="companylist">
+              <f:form.radio id="companies" property="companies" value="{companylist.uid}" />{companylist.name}
+              <br>
+            </f:for>
+          </f:then>
+          <f:else>
+            <p class="alert alert-warning">No companies found.</p>
+          </f:else>
+        </f:if><br>
+
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:mobile_company/Resources/Private/Language/locallang_csh_tx_mobilecompany_domain_model_company.xlf" date="2025-10-13T13:26:03Z" product-name="mobile_company">
+		<header/>
+		<body>
+			<trans-unit id="name.description" resname="name.description">
+				<source>company name </source>
+			</trans-unit>
+			<trans-unit id="country.description" resname="country.description">
+				<source>country of origin</source>
+			</trans-unit>
+			<trans-unit id="founded_year.description" resname="founded_year.description">
+				<source>Year established</source>
+			</trans-unit>
+			<trans-unit id="website.description" resname="website.description">
+				<source>Company website URL</source>
+			</trans-unit>
+			<trans-unit id="description.description" resname="description.description">
+				<source>Company description</source>
+			</trans-unit>
+			<trans-unit id="mobiles.description" resname="mobiles.description">
+				<source>mobiles</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

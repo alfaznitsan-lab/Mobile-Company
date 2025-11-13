@@ -1,0 +1,7 @@
+services:
+  Nitsan\MobileCompany\Command\DeleteOldRecordsCommand:
+    tags:
+      - name: console.command
+        command: 'mobilecompany:deleteoldrecords'
+        description: 'Deletes old mobilecompany records.'
+        schedulable: true

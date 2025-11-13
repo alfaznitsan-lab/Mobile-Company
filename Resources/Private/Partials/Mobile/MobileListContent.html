@@ -1,0 +1,67 @@
+<table class="tx_mobilecompany table table-bordered table-hover">
+  <tr class="table-dark">
+    <th>id</th>
+    <th><f:translate key="tx_mobilecompany_domain_model_mobile.image" /></th>
+    <th><f:translate key="tx_mobilecompany_domain_model_mobile.model_name" /></th>
+    <th><f:translate key="tx_mobilecompany_domain_model_mobile.brand" /></th>
+    <th><f:translate key="tx_mobilecompany_domain_model_mobile.price" /></th>
+    <th>Details</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <f:for each="{paginator.paginatedItems}" as="mobile">
+    <tr>
+      <td>
+        <f:if condition="{detailPid} == null">
+          <f:then>
+            <f:debug>detailPid is null in {im}</f:debug>
+          </f:then>
+          <f:else>
+            <f:link.page 
+              pageUid="{detailPid}"
+              additionalParams="{tx_mobilecompany_mobilecompanydetailplugin: {mobile: mobile}}">
+              {mobile.uid}
+            </f:link.page>
+          </f:else>
+        </f:if>
+      </td>
+      <td>
+        <f:if condition="{mobile.image}">
+          <f:then>
+            <f:image image="{mobile.image.0}" class="img-fluid rounded-start m-1" alt="Mobile Image" width="100px" height="100px"/>
+          </f:then>
+          <f:else>
+            No Image
+          </f:else>
+        </f:if>
+      </td>
+      <td>{mobile.modelName}</td>
+      <td>{mobile.brand}</td>
+      <td>{mobile.price}</td>
+      <td><f:link.action action="show" arguments="{mobile : mobile}" class="btn btn-outline-info">Show</f:link.action></td>
+      <td><f:link.action action="edit" arguments="{mobile : mobile}" class="btn btn-outline-success">Edit</f:link.action></td>
+      <td><f:link.action action="delete" arguments="{mobile : mobile}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</f:link.action></td>
+    </tr>
+  </f:for>
+</table>
+
+ <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <ul class="pagination pagination-load-wrap" id="pagination-links">
+        <f:for each="{pagination.allPageNumbers}" as="page">
+          <li class="page-item">
+            <a href="#" 
+              class="page-link paginate {f:if(condition:'{paginator.currentPageNumber}=={page}',then:'active')}"
+              data-page="{page}"
+              onclick="fetchFilteredResults(event, {page})">
+              {page}
+            </a>
+          </li>
+        </f:for>
+      </ul>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <br>

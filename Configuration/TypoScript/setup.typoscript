@@ -1,0 +1,90 @@
+plugin.tx_mobilecompany_mobilecompanyplugin {
+    view {
+        templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
+        partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
+        layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_mobilecompany_mobilecompanyplugin.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+plugin.tx_mobilecompany_mobilecompanylistplugin {
+  view {
+    templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
+    partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
+    layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
+  }
+  persistence {
+    storagePid = {$plugin.tx_mobilecompany_mobilecompanylistplugin.persistence.storagePid}
+  }
+  settings {
+    detailPid = 19
+  }
+}
+
+plugin.tx_mobilecompany_mobilecompanydetailplugin {
+  view {
+    templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+    templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
+    partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+    partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
+    layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+    layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
+  }
+  persistence {
+    storagePid = {$plugin.tx_mobilecompany_mobilecompanydetailplugin.persistence.storagePid}
+  }
+  settings {
+    listPid = 18
+  }
+}
+
+# these classes are only used in auto-generated templates
+plugin.tx_mobilecompany._CSS_DEFAULT_STYLE (
+    textarea.f3-form-error {
+        background-color: #FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    input.f3-form-error {
+        background-color: #FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    .tx-mobile-company table {
+        border-collapse: separate;
+        border-spacing: 10px;
+    }
+
+    .tx-mobile-company table th {
+        font-weight: bold;
+    }
+
+    .tx-mobile-company table td {
+        vertical-align: top;
+    }
+
+    .typo3-messages .message-error {
+        color: red;
+    }
+
+    .typo3-messages .message-ok {
+        color: green;
+    }
+)

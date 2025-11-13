@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="content">
+  <h1>List Of Mobile</h1>
+  <div id="filtererror"></div>
+
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <f:form action="list" name="filter" id="filterForm" method="post">
+      <label for="brand">Filter Data:</label>
+
+      <f:form.textfield name="filterName" value="{filterName}" placeholder="Enter Name" id="filterName" />
+      <f:form.textfield name="filterBrand" value="{filterBrand}" placeholder="Enter Brand" id="filterBrand" />
+      <f:form.textfield name="filterPrize" value="{filterPrize}" placeholder="Enter Prize" id="filterPrize" />
+
+      <f:form.submit class="btn btn-outline-info" value="Filter" onclick="fetchFilteredResults(event, 1)" />
+      <f:link.action action="list" class="btn btn-outline-danger">Clear Filter</f:link.action>
+    </f:form>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <br>
+  
+  <div id="mobile-list-container" data-base-ajax-url="{f:uri.action(
+    action: 'list', 
+    controller: 'Mobile', 
+    extensionName: 'MobileCompany', 
+    pluginName: 'Mobilecompanylistplugin',
+    absolute: 1
+    )}">
+
+    <f:render partial="Mobile/MobileListContent" arguments="{_all}" />
+  </div>
+
+  <f:link.action action="new" class="btn btn-outline-info">New Mobile</f:link.action>
+
+  <script src="{f:uri.resource(path:'JavaScript/AjaxFilterPagination.js', extensionName:'MobileCompany')}" type="text/javascript"></script>
+</f:section>
+</html>
