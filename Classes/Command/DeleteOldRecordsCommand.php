@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Connection;
 use Symfony\Component\Console\Input\InputArgument;
 
-
 #[AsCommand(name: 'mobilecompany:deleteoldrecords', description: 'Deletes old mobilecompany records.',schedulable: true)]
 
 final class DeleteOldRecordsCommand extends Command
