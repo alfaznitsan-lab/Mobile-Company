@@ -15,4 +15,8 @@ services:
     tags:
       - name: event.listener
         identifier: 'MobileCompany/extension-activated'
-        event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
+  
+  Nitsan\MobileCompany\Package\EventListener\LogEntryInNewRecordListener:
+    tags:
+      - name: event.listener
+        identifier: 'NewRecordAdd'
