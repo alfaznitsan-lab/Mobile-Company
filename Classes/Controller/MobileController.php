@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Nitsan\MobileCompany\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter;
@@ -14,10 +12,9 @@ use TYPO3\CMS\Core\DataHandling\Model\RecordStateFactory;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Nitsan\MobileCompany\Event\LogEntryOnNewRecord;
 use TYPO3\CMS\Core\Utility\DebugUtility;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Core\Http\Response;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * This file is part of the "Mobile Company" Extension for TYPO3 CMS.
@@ -33,6 +30,11 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    protected $eventDispatcher;
+    public function __construct(EventDispatcherInterface $eventDispatcher) 
+    {
+        $this->eventDispatcher = $eventDispatcher;
+    }
     /**
      * @var \TYPO3\CMS\Extbase\Mvc\View\ViewInterface
      */
@@ -113,7 +115,7 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $filterName = $this->request->hasArgument('filterName') ? $this->request->getArgument('filterName') : '';
         $filterPrize = $this->request->hasArgument('filterPrize') ? $this->request->getArgument('filterPrize') : '';
 
-        $filteredMobiles = $this->mobileRepository->findByFilters($filterName, $filterBrand, $filterPrize, $filterCompany)->toArray();
+        $filteredMobiles = $this->mobileRepository->findByFilters($filterName, $filterBrand, $filterPrize)->toArray();
 
         $itemsPerPage = (int)($this->settings['itemsPerPage'] ?? 5);
         $currentPageNumber = $this->request->hasArgument('currentPageNumber')?(int)$this->request->getArgument('currentPageNumber'): 1;
@@ -201,7 +203,6 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $this->mobileRepository->update($newMobile);
         }
         
-        // Handle uploaded image
         if($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image']){
             $newFile = $this->getUploadedFileData($_FILES['tx_mobilecompany_mobilecompanylistplugin']['tmp_name']['image'], $_FILES['tx_mobilecompany_mobilecompanylistplugin']['name']['image']);
             
@@ -223,7 +224,7 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         }
         
-        $this->mobileRepository->add($newMobile);
+        $this->eventDispatcher->dispatch(new LogEntryOnNewRecord('New model added in mobile list.'));
 
         $this->addFlashMessage('The object was created.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
         $this->redirect('list');
@@ -232,7 +233,6 @@ class MobileController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     /**
      * Initialize property mapping for create action
      */
-
     protected function initializeCreateAction(): void
     {
         $propertyMappingConfiguration = $this->arguments['newMobile']->getPropertyMappingConfiguration();
