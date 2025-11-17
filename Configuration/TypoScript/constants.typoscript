@@ -6,16 +6,17 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
         partialRootPath = EXT:mobile_company/Resources/Private/Partials/
         # cat=plugin.tx_mobilecompany_mobilecompanyplugin/file; type=string; label=Path to template layouts (FE)
         layoutRootPath = EXT:mobile_company/Resources/Private/Layouts/
+        # cat=plugin.tx_mobilecompany_mobilecompanyplugin/file; type=string; label=Path to CSS layouts (FE)
+        cssFile = EXT:mobile_company/Resources/Public/Css/Styles.css
     }
     persistence {
         # cat=plugin.tx_mobilecompany_mobilecompanyplugin//a; type=string; label=Default storage PID
         storagePid =
     }
     settings{
-        # cat = site/color; type = color; label = Page Background Color
-        pageBackgroundColor = #00aeffff
-        # cat = site/class; type = class; String = Page CSS Class
-        myBodyClass = custom-CSS
-        cssFile = EXT:mobile_company/Resources/Public/Css/Styles.css
+        # cat=plugin.tx_mobilecompany_mobilecompanyplugin/color; type=color; label=Page Background Color
+        backColor = #00aeffff
+        # cat=plugin.tx_mobilecompany_mobilecompanyplugin/String; type=String; label=Page CSS Class
+        styles = First-CSS
     }
 }
