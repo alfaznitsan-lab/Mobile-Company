@@ -21,12 +21,6 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
   }
 }
 
-//set color and class using constatnt
-page.bodyTagCObject = TEXT
-page.bodyTagCObject.value = <body class="{$plugin.tx_mobilecompany_mobilecompanyplugin.settings.myBodyClass}" style="background-color: {$plugin.tx_mobilecompany_mobilecompanyplugin.settings.pageBackgroundColor};">
-page.includeCSS {
-  styles = {$plugin.tx_mobilecompany_mobilecompanyplugin.settings.cssFile}
-}
 
 plugin.tx_mobilecompany_mobilecompanylistplugin {
   view {
@@ -60,6 +54,15 @@ plugin.tx_mobilecompany_mobilecompanydetailplugin {
   settings {
     listPid = 18
   }
+}
+
+page{
+  bodyTagCObject = TEXT
+  bodyTagCObject.value = <body class="{$plugin.tx_mobilecompany_mobilecompanyplugin.settings.styles}" style="background-color: {$plugin.tx_mobilecompany_mobilecompanyplugin.settings.backColor};">
+}
+
+page.includeCSS {
+  styles = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.cssFile}
 }
 
 # Typoscript Conditions
