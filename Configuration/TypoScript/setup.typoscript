@@ -1,24 +1,31 @@
 plugin.tx_mobilecompany_mobilecompanyplugin {
-    view {
-        templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
-        templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
-        partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
-        partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
-        layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
-        layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
-    }
-    persistence {
-        storagePid = {$plugin.tx_mobilecompany_mobilecompanyplugin.persistence.storagePid}
-        #recursive = 1
-    }
-    features {
-        #skipDefaultArguments = 1
-        # if set to 1, the enable fields are ignored in BE context
-        ignoreAllEnableFieldsInBe = 0
-    }
-    mvc {
-        #callDefaultActionIfActionCantBeResolved = 1
-    }
+  view {
+      templateRootPaths.0 = EXT:mobile_company/Resources/Private/Templates/
+      templateRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.templateRootPath}
+      partialRootPaths.0 = EXT:mobile_company/Resources/Private/Partials/
+      partialRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.partialRootPath}
+      layoutRootPaths.0 = EXT:mobile_company/Resources/Private/Layouts/
+      layoutRootPaths.1 = {$plugin.tx_mobilecompany_mobilecompanyplugin.view.layoutRootPath}
+  }
+  persistence {
+      storagePid = {$plugin.tx_mobilecompany_mobilecompanyplugin.persistence.storagePid}
+      #recursive = 1
+  }
+  features {
+      #skipDefaultArguments = 1
+      # if set to 1, the enable fields are ignored in BE context
+      ignoreAllEnableFieldsInBe = 0
+  }
+  mvc {
+      #callDefaultActionIfActionCantBeResolved = 1
+  }
+}
+
+//set color and class using constatnt
+page.bodyTagCObject = TEXT
+page.bodyTagCObject.value = <body class="{$plugin.tx_mobilecompany_mobilecompanyplugin.settings.myBodyClass}" style="background-color: {$plugin.tx_mobilecompany_mobilecompanyplugin.settings.pageBackgroundColor};">
+page.includeCSS {
+  styles = {$plugin.tx_mobilecompany_mobilecompanyplugin.settings.cssFile}
 }
 
 plugin.tx_mobilecompany_mobilecompanylistplugin {
@@ -86,14 +93,14 @@ plugin.tx_mobilecompany_mobilecompanydetailplugin {
   page.14.value = <br />Typo3 vesrion 11.5.41!
 [END]
 
-[date("j") == 15]
+[date("j") == 17]
 #j=monthday w=weekday z=yearday
   page = PAGE
   page.15 = TEXT
-  page.15.value = <br /> 15 November!
+  page.15.value = <br /> 17 November!
 [END]
 
-[date("G") == 14]
+[date("G") == 12]
   page = PAGE
   page.16 = TEXT
   page.16.value = <br /> hour is correct!
@@ -108,6 +115,20 @@ plugin.tx_mobilecompany_mobilecompanydetailplugin {
   page = PAGE
   page.17 = TEXT
   page.17.value = <br />context is another!
+[END]
+
+[workspace.isLive]
+  page = PAGE
+  page.18 = TEXT
+  page.18.value = <br />Workspace is live! id is: {workspace.workspaceId}
+
+[getenv("VIRTUAL_HOST") == "typo3-11.ddev.site"]
+  page = PAGE
+  page.19 = TEXT
+  page.19.value = <br />Typo3 work in ddev!
+
+[siteLanguage("locale") == "en_US.UTF-8"]
+  page.10.value = This site has the locale "de_CH"
 [END]
 
 # these classes are only used in auto-generated templates
