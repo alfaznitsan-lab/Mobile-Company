@@ -56,12 +56,6 @@ plugin.tx_mobilecompany_mobilecompanydetailplugin {
 }
 
 # Typoscript Conditions
-[page.uid == 21]
-  page = PAGE
-  page.5 = TEXT
-  page.5.value = HELLO WORLD!
-[end]
-
 [traverse(page, "uid") == 21]
   page = PAGE
   page.10 = TEXT
