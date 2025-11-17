@@ -12,6 +12,7 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
         storagePid =
     }
     settings{
+        # cat = site/color; type = color; label = Page Background Color
         pageBackgroundColor = #00aeffff
         myBodyClass = custom-CSS
         cssFile = EXT:mobile_company/Resources/Public/Css/Styles.css
