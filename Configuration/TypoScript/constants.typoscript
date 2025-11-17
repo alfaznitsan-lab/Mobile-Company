@@ -11,4 +11,9 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
         # cat=plugin.tx_mobilecompany_mobilecompanyplugin//a; type=string; label=Default storage PID
         storagePid =
     }
+    settings{
+        pageBackgroundColor = #00aeffff
+        myBodyClass = custom-CSS
+        cssFile = EXT:mobile_company/Resources/Public/Css/Styles.css
+    }
 }
