@@ -14,7 +14,7 @@ plugin.tx_mobilecompany_mobilecompanyplugin {
     settings{
         # cat = site/color; type = color; label = Page Background Color
         pageBackgroundColor = #00aeffff
-        # cat = site/class; type = class; label = Page CSS Class
+        # cat = site/class; type = class; String = Page CSS Class
         myBodyClass = custom-CSS
         cssFile = EXT:mobile_company/Resources/Public/Css/Styles.css
     }
